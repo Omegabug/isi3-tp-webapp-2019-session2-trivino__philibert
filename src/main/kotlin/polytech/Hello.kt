@@ -76,5 +76,12 @@ fun main(args: Array<String>) {
 
     }
 
+    app.delete("/delingredient") {ctx ->
+
+        val ingredient = Ingredient(ctx.queryParam("ingredient").toString())
+        kebab.remove(ingredient)
+        ctx.json(ingredient).status(201)
+    }
+
 
 }

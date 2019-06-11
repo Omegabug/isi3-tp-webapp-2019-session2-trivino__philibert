@@ -9,7 +9,11 @@ Vue.component(`messages-list`, {
 
 <!--        Exercice 2-->
       <div v-for="ingredient in kebab">
-        <h2 class="subtitle">{{ingredient}}</h2>
+        <h2 class="subtitle">{{ingredient}}
+<!--        Exercice 3-->
+        <button v-on:click="deleteIngredient(ingredient)" 
+        class="button is-link fa fa-times">
+        </button></h2>
       </div>
     </div>
   `,
@@ -19,8 +23,8 @@ Vue.component(`messages-list`, {
             // title: "Messages List",
             // messages: []
 
-            // Exercice 1
-            title: "détail du Kebab",
+            // Exercice 2
+            title: "Détail du Kebab",
             kebab: [],
             ingredients: []
         }
@@ -62,7 +66,12 @@ Vue.component(`messages-list`, {
                 .catch(error => {
                     console.log(error)
                 })
-            console.log(this.kebab)
+            // console.log(kebab)
+        },
+
+        // Exercice 3
+        deleteIngredient: function(ingredient){
+            this.$root.$emit("delete_ingredient", ingredient)
         }
     },
     mounted() {
@@ -94,7 +103,7 @@ Vue.component(`messages-list`, {
         this.$root.$on("add-message", (ingredient)=> {
             this.kebab.push(ingredient)
 
-            console.log(ingredient)
+            // console.log(ingredient)
             fetch(`/kebab`, {
                 method: 'POST',
                 headers: {
@@ -109,6 +118,28 @@ Vue.component(`messages-list`, {
                 .catch(error => {
                     console.log(error)
                 })
+        })
+
+        // Exercice 3
+        this.$root.$on("delete_ingredient", (ingredient)=> {
+
+            console.log(this.kebab)
+            fetch(`/delingredient?ingredient=`+ingredient, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "text/plain",
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+
+            this.kebab = []
+            this.buildKebab()
         })
     }
 });
