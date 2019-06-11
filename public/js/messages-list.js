@@ -15,11 +15,20 @@ Vue.component(`messages-list`, {
     },
     methods: {
         populateTheList: function() {
-            this.messages = [
-                "one",
-                "two",
-                "three"
-            ]
+            fetch(`/messages`, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    data.map(item => this.messages.push(item.text));
+                    console.log(data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         }
     },
     mounted() {
@@ -27,6 +36,21 @@ Vue.component(`messages-list`, {
 
         this.$root.$on("add-message", (message)=> {
             this.messages.push(message)
+            console.log(message)
+            fetch(`/messages`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "text/plain",
+                },
+                body:"text="+message
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         })
 
     }
