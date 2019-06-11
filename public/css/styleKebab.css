@@ -1,0 +1,17 @@
+.div-center{
+    display: flex;
+    justify-content: center !important;
+}
+
+.add-margin-top{
+    margin-top: 10px;
+}
+
+.add-margin-right{
+    margin-right: 5px;
+}
+
+.list-kebab{
+    flex-direction: column;
+    align-items: center;
+}
