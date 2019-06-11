@@ -1,6 +1,6 @@
 Vue.component(`messages-list`, {
     template: `
-    <div>
+    <div class="div-center list-kebab">
       <hr><h2 class="subtitle">{{title}}</h2><hr>
 <!--      Exercice 1-->
 <!--      <div v-for="message in messages">-->

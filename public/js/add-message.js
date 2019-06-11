@@ -1,6 +1,6 @@
 Vue.component(`add-message`, {
     template: `
-    <div class="field is-grouped">
+    <div class="field is-grouped div-center">
 <!--    Exercice 1-->
 <!--      <div class="control">-->
 <!--        <input v-model="message" class="input" type="text" placeholder="type message">-->
@@ -9,8 +9,8 @@ Vue.component(`add-message`, {
 
 <!--      </div>-->
 
-        <div id="selector">
-            <select class="form-control" name="template" v-model="selected">
+        <div id="selector" class="add-margin-right">
+            <select class="form-control " name="template" v-model="selected">
                 <option v-for="ingredient in ingredients" v-bind:value="ingredient">
                    {{ ingredient }}
                 </option>
