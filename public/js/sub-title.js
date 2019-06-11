@@ -1,7 +1,7 @@
 Vue.component(`sub-title`, {
   template: `
   <h2 class="subtitle">
-    Polytech 2019 
+    PolyKebab 2019 - Trivino - Philibert
   </h2>
   `
 });

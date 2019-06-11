@@ -1,7 +1,7 @@
 Vue.component(`app-title`, {
   template: `
     <h1 class="title">
-      Démo
+      Kebab Factory !
     </h1> 
   `
 });
